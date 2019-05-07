@@ -1,0 +1,56 @@
+{
+    "type": "object",
+    "properties": {
+        "linkId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The resource link.",
+            "properties": {
+                "id": {
+                    "description": "The fully qualified ID of the resource link.",
+                    "readOnly": true,
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the resource link.",
+                    "readOnly": true,
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "Properties for resource link.",
+                    "properties": {
+                        "notes": {
+                            "description": "Notes about the resource link.",
+                            "type": "string"
+                        },
+                        "sourceId": {
+                            "description": "The fully qualified ID of the source resource in the link. ",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "targetId": {
+                            "description": "The fully qualified ID of the target resource in the link.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "targetId"
+                    ]
+                },
+                "type": {
+                    "description": "The resource link object.",
+                    "readOnly": true,
+                    "type": "object"
+                }
+            },
+            "x-ms-azure-resource": true,
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

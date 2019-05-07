@@ -1,0 +1,152 @@
+{
+    "title": "ManagementLinkClient",
+    "description": "Azure resources can be linked together to form logical relationships. You can establish links between resources belonging to different resource groups. However, all the linked resources must belong to the same subscription. Each resource can be linked to 50 other resources. If any of the linked resources are deleted or moved, the link owner must clean up the remaining link.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/resources-links/2016-09-01/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Operations_List": {
+            "main": "./lib/actions/Operations_List.js",
+            "title": "Lists all of the available Microsoft.Resources REST API operations.",
+            "description": "Lists all of the available Microsoft.Resources REST API operations.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Operations_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ResourceLinks_ListAtSubscription": {
+            "main": "./lib/actions/ResourceLinks_ListAtSubscription.js",
+            "title": "Gets all the linked resources for the subscription.",
+            "description": "Gets all the linked resources for the subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ResourceLinks_ListAtSubscription.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ResourceLinks_Delete": {
+            "main": "./lib/actions/ResourceLinks_Delete.js",
+            "title": "Deletes a resource link with the specified ID.",
+            "description": "Deletes a resource link with the specified ID.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ResourceLinks_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ResourceLinks_Get": {
+            "main": "./lib/actions/ResourceLinks_Get.js",
+            "title": "Gets a resource link with the specified ID.",
+            "description": "Gets a resource link with the specified ID.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ResourceLinks_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ResourceLinks_CreateOrUpdate": {
+            "main": "./lib/actions/ResourceLinks_CreateOrUpdate.js",
+            "title": "Creates or updates a resource link between the specified resources.",
+            "description": "Creates or updates a resource link between the specified resources.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ResourceLinks_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ResourceLinks_ListAtSourceScope": {
+            "main": "./lib/actions/ResourceLinks_ListAtSourceScope.js",
+            "title": "Gets a list of resource links at and below the specified source scope.",
+            "description": "Gets a list of resource links at and below the specified source scope.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ResourceLinks_ListAtSourceScope.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
